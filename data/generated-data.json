@@ -1,0 +1,13 @@
+{
+  "updatedAt": "2026-06-13T19:50:08.793Z",
+  "netWorthSnapshots": [],
+  "companyUpdates": [
+    {
+      "name": "Tesla",
+      "companyValueUsd": 1308704576416.0156,
+      "muskStakeValueUsd": 167042726989.7461,
+      "sourceUrl": "https://finance.yahoo.com/quote/TSLA/",
+      "note": "Public market value refreshed from TSLA close on 2026-06-12."
+    }
+  ]
+}

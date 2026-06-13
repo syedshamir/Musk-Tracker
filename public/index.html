@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Musk Net Worth Tracker</title>
+    <meta
+      name="description"
+      content="An interactive dashboard for tracking Elon Musk's estimated net worth."
+    >
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="topline">
+          <div class="eyebrow">Live-style billionaire dashboard</div>
+          <div class="theme-toggle" role="group" aria-label="Theme selection">
+            <button class="active" type="button" data-theme-choice="light">Light</button>
+            <button type="button" data-theme-choice="dark">Dark</button>
+          </div>
+        </div>
+        <div class="hero-grid">
+          <div>
+            <h1>Elon Musk Net Worth Tracker</h1>
+            <p class="intro">
+              A compact, interactive view of estimated wealth, daily movement,
+              source freshness, and what may be driving the number.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="metric-panel">
+        <div>
+          <span class="label">Estimated net worth</span>
+          <div class="mega-number" id="net-worth">$0.00T</div>
+          <p class="timestamp" id="updated-at">Loading latest snapshot...</p>
+        </div>
+        <div class="daily-card" id="daily-card">
+          <span>Today</span>
+          <strong id="daily-change">$0.0B</strong>
+          <small id="daily-percent">+0.00%</small>
+        </div>
+      </section>
+
+      <section class="chart-card">
+        <div class="card-heading">
+          <div>
+            <span class="label">History</span>
+            <h2 id="chart-value">$0.00T</h2>
+            <p id="chart-date">Hover a point</p>
+          </div>
+          <div class="range-tabs" aria-label="Chart range">
+            <button data-range="1W">1W</button>
+            <button class="active" data-range="1M">1M</button>
+            <button data-range="2Y">2Y</button>
+            <button data-range="5Y">5Y</button>
+            <button data-range="10Y">10Y</button>
+            <button data-range="20Y">20Y</button>
+            <button data-range="ALL">ALL</button>
+          </div>
+        </div>
+
+        <svg
+          class="chart"
+          id="chart"
+          viewBox="0 0 760 280"
+          role="img"
+          aria-label="Estimated net worth over time"
+        ></svg>
+
+        <div class="chart-scale">
+          <span id="scale-min">$0.0B</span>
+          <span id="scale-max">$0.0B</span>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div class="breakdown-card">
+          <div class="card-heading compact">
+            <div>
+              <span class="label">Breakdown</span>
+              <h2>Wealth drivers</h2>
+            </div>
+          </div>
+          <div class="component-list" id="component-list"></div>
+        </div>
+
+        <div class="companies-card">
+          <div class="card-heading compact">
+            <div>
+              <span class="label">Companies</span>
+              <h2>Owned and led</h2>
+              <p>Company values and estimated Musk stake values.</p>
+            </div>
+          </div>
+          <div class="company-list" id="company-list"></div>
+        </div>
+
+        <div class="insight-stack">
+          <section class="milestone-card">
+            <span class="label">Milestones</span>
+            <div id="milestone-list"></div>
+          </section>
+
+          <section class="method-card">
+            <span class="label">Methodology</span>
+            <p id="methodology">Loading methodology...</p>
+          </section>
+
+          <section class="source-card">
+            <span>Source mode</span>
+            <strong id="source-mode">Loading...</strong>
+            <a id="source-link" href="#" target="_blank" rel="noreferrer">View reference</a>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

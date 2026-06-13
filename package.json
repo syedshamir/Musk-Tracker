@@ -1,0 +1,15 @@
+{
+  "name": "musk-net-worth-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.mjs",
+    "serve": "node server.mjs",
+    "start": "node server.mjs",
+    "build": "node scripts/check-app.mjs",
+    "check": "node --check server.mjs && node --check src/netWorthData.mjs && node --check public/app.js && node --check scripts/update-data.mjs && node scripts/check-app.mjs",
+    "update:data": "node scripts/update-data.mjs",
+    "update:net-worth": "node scripts/update-data.mjs --net-worth",
+    "update:market": "node scripts/update-data.mjs --market"
+  }
+}

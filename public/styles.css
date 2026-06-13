@@ -1,0 +1,604 @@
+:root {
+  color-scheme: light;
+  --ink: #17201d;
+  --muted: #65716c;
+  --paper: #fff8ec;
+  --card: rgba(255, 252, 244, 0.82);
+  --line: rgba(23, 32, 29, 0.14);
+  --ember: #d8572a;
+  --gold: #f4b942;
+  --forest: #183a37;
+  --shadow: 0 24px 80px rgba(24, 58, 55, 0.18);
+  --page-bg:
+    radial-gradient(circle at 12% 18%, rgba(244, 185, 66, 0.38), transparent 28rem),
+    radial-gradient(circle at 82% 4%, rgba(14, 124, 123, 0.24), transparent 24rem),
+    linear-gradient(135deg, #fff8ec 0%, #f3ead6 46%, #e6d2b0 100%);
+  --hero-bg:
+    linear-gradient(145deg, rgba(255, 252, 244, 0.96), rgba(255, 248, 236, 0.7)),
+    repeating-linear-gradient(90deg, rgba(23, 32, 29, 0.05) 0 1px, transparent 1px 44px);
+  --soft-panel: rgba(255, 255, 255, 0.42);
+  --quiet-fill: rgba(23, 32, 29, 0.06);
+  --track: rgba(23, 32, 29, 0.09);
+  --positive-bg: rgba(14, 124, 123, 0.12);
+  --negative-bg: rgba(216, 87, 42, 0.14);
+  --chart-dot: #fff8ec;
+  --active-text: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #fff7df;
+  --muted: #d6caa8;
+  --paper: #101715;
+  --card: rgba(20, 29, 26, 0.88);
+  --line: rgba(255, 247, 223, 0.2);
+  --ember: #ff855f;
+  --gold: #ffd166;
+  --forest: #ffe7a3;
+  --shadow: 0 24px 90px rgba(0, 0, 0, 0.46);
+  --page-bg:
+    radial-gradient(circle at 16% 12%, rgba(255, 209, 102, 0.2), transparent 24rem),
+    radial-gradient(circle at 84% 10%, rgba(62, 187, 177, 0.2), transparent 24rem),
+    linear-gradient(135deg, #07100f 0%, #10201d 48%, #1f2a22 100%);
+  --hero-bg:
+    linear-gradient(145deg, rgba(22, 32, 29, 0.96), rgba(12, 20, 18, 0.84)),
+    repeating-linear-gradient(90deg, rgba(255, 247, 223, 0.08) 0 1px, transparent 1px 44px);
+  --soft-panel: rgba(255, 247, 223, 0.08);
+  --quiet-fill: rgba(255, 247, 223, 0.1);
+  --track: rgba(255, 247, 223, 0.16);
+  --positive-bg: rgba(62, 187, 177, 0.2);
+  --negative-bg: rgba(255, 133, 95, 0.2);
+  --chart-dot: #101715;
+  --active-text: #101715;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--ink);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 42px 0 56px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 36px;
+  background: var(--hero-bg);
+  box-shadow: var(--shadow);
+  padding: 34px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: -110px;
+  width: 310px;
+  height: 310px;
+  border-radius: 999px;
+  background: conic-gradient(from 20deg, var(--ember), var(--gold), #0e7c7b, var(--ember));
+  opacity: 0.24;
+}
+
+.topline {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eyebrow,
+.label {
+  color: var(--muted);
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+}
+
+.theme-toggle {
+  display: flex;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft-panel);
+  padding: 6px;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+.theme-toggle button {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 800;
+  padding: 9px 14px;
+}
+
+.theme-toggle button.active {
+  background: var(--forest);
+  color: var(--active-text);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  max-width: 760px;
+  margin-top: 18px;
+  font-size: clamp(3.2rem, 9vw, 7.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.08em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  letter-spacing: -0.055em;
+}
+
+.intro {
+  max-width: 620px;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 1.13rem;
+  line-height: 1.6;
+}
+
+.source-card,
+.daily-card,
+.chart-card,
+.breakdown-card,
+.companies-card,
+.milestone-card,
+.method-card,
+.metric-panel {
+  border: 1px solid var(--line);
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.source-card {
+  display: grid;
+  gap: 8px;
+  margin-top: 22px;
+  border-radius: 24px;
+  padding: 22px;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+.source-card span,
+.source-card a {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.source-card strong {
+  font-size: 1.35rem;
+}
+
+.metric-panel {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 28px;
+  align-items: center;
+  margin-top: 22px;
+  border-radius: 36px;
+  padding: 28px 32px;
+}
+
+.mega-number {
+  margin-top: 4px;
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.09em;
+}
+
+.timestamp {
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+.daily-card {
+  display: grid;
+  gap: 8px;
+  border-radius: 28px;
+  padding: 24px;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+.daily-card strong {
+  font-size: 2rem;
+}
+
+.daily-card.positive {
+  background: var(--positive-bg);
+}
+
+.daily-card.negative {
+  background: var(--negative-bg);
+}
+
+.chart-card,
+.breakdown-card,
+.companies-card,
+.milestone-card,
+.method-card {
+  margin-top: 22px;
+  border-radius: 32px;
+  padding: 28px;
+}
+
+.card-heading {
+  display: flex;
+  gap: 20px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.card-heading p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+.card-heading.compact {
+  margin-bottom: 18px;
+}
+
+.range-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px;
+  background: var(--soft-panel);
+}
+
+.range-tabs button {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 9px 14px;
+}
+
+.range-tabs button.active {
+  background: var(--forest);
+  color: var(--active-text);
+}
+
+.chart {
+  width: 100%;
+  min-height: 260px;
+  margin-top: 28px;
+  overflow: visible;
+}
+
+.chart circle {
+  fill: var(--chart-dot);
+  stroke: var(--forest);
+  stroke-width: 3;
+  cursor: pointer;
+  transition: r 160ms ease;
+}
+
+.chart-scale {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 0.9rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 22px;
+}
+
+.companies-card {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.component-list {
+  display: grid;
+  gap: 20px;
+}
+
+.company-list {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.component-row {
+  display: grid;
+  gap: 9px;
+}
+
+.company-card {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--company-accent) 18%, transparent), transparent 46%),
+    var(--soft-panel);
+  padding: 20px;
+}
+
+.company-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  background: var(--company-accent);
+}
+
+.company-head,
+.company-metrics,
+.company-financials {
+  position: relative;
+  z-index: 1;
+}
+
+.company-head {
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+.company-head div {
+  display: grid;
+  gap: 4px;
+}
+
+.company-head strong {
+  color: var(--ink);
+  font-size: 1.28rem;
+}
+
+.company-head span,
+.company-head a {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.company-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.company-metrics > div,
+.financial-grid > div {
+  border-radius: 18px;
+  background: var(--quiet-fill);
+  padding: 14px;
+}
+
+.company-metrics span,
+.financial-grid span,
+.financial-title span {
+  display: block;
+  color: var(--muted);
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.company-metrics strong,
+.financial-grid strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 1.55rem;
+  letter-spacing: -0.04em;
+}
+
+.company-financials {
+  display: grid;
+  gap: 12px;
+}
+
+.financial-period {
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--paper) 36%, transparent);
+  padding: 16px;
+}
+
+.financial-unavailable {
+  background: var(--quiet-fill);
+}
+
+.financial-title {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.financial-title strong {
+  color: var(--ink);
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 1rem;
+}
+
+.financial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.component-title,
+.milestone {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+.component-title strong,
+.component-title span {
+  font-size: 1.05rem;
+}
+
+.bar-track {
+  height: 13px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--track);
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.component-row p,
+.company-card p,
+.method-card p {
+  color: var(--muted);
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.company-card p a {
+  color: var(--ink);
+  font-weight: 800;
+  margin-left: 6px;
+  text-decoration: underline;
+  text-decoration-color: var(--company-accent);
+  text-underline-offset: 3px;
+}
+
+.insight-stack {
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
+  align-content: start;
+  gap: 0;
+}
+
+.milestone-card {
+  display: grid;
+  gap: 14px;
+}
+
+#milestone-list {
+  display: grid;
+  gap: 14px;
+}
+
+.milestone {
+  border-radius: 18px;
+  background: var(--quiet-fill);
+  padding: 15px;
+}
+
+.milestone.reached {
+  background: var(--positive-bg);
+}
+
+.method-card p {
+  margin-top: 12px;
+}
+
+@media (max-width: 760px) {
+  .shell {
+    width: min(100% - 22px, 1180px);
+    padding-top: 18px;
+  }
+
+  .hero,
+  .metric-panel,
+  .chart-card,
+  .breakdown-card,
+  .companies-card,
+  .milestone-card,
+  .method-card {
+    border-radius: 24px;
+    padding: 22px;
+  }
+
+  .topline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hero-grid,
+  .metric-panel,
+  .content-grid,
+  .company-list,
+  .company-metrics,
+  .financial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .companies-card,
+  .insight-stack {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .card-heading {
+    display: grid;
+  }
+
+  .mega-number {
+    font-size: clamp(4rem, 22vw, 7rem);
+  }
+}

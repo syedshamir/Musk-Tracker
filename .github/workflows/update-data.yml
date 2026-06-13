@@ -1,0 +1,40 @@
+name: Update tracker data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+    - cron: "30 22 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Update scheduled data
+        env:
+          NET_WORTH_SOURCE_URL: ${{ secrets.NET_WORTH_SOURCE_URL }}
+          MARKET_VALUES_SOURCE_URL: ${{ secrets.MARKET_VALUES_SOURCE_URL }}
+          TESLA_SHARES_OUTSTANDING: ${{ vars.TESLA_SHARES_OUTSTANDING }}
+          MUSK_TESLA_SHARES: ${{ vars.MUSK_TESLA_SHARES }}
+        run: node scripts/update-data.mjs
+
+      - name: Commit generated data
+        run: |
+          if [ -n "$(git status --porcelain data/generated-data.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/generated-data.json
+            git commit -m "Update scheduled tracker data"
+            git push
+          else
+            echo "No generated data changes."
+          fi
