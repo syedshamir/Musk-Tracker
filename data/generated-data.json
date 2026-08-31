@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T13:03:49.146Z",
+  "updatedAt": "2026-08-31T22:37:53.683Z",
   "netWorthSnapshots": [],
   "companyUpdates": [
     {
@@ -7,7 +7,7 @@
       "companyValueUsd": 0,
       "muskStakeValueUsd": 0,
       "sourceUrl": "https://finance.yahoo.com/quote/TSLA/",
-      "note": "Public market value refreshed from TSLA close on 2026-08-28."
+      "note": "Public market value refreshed from TSLA close on 2026-08-31."
     }
   ]
 }
